@@ -4,6 +4,7 @@ outcome of the program - set of leaked objects. As you can see, in app.c, I had 
 the below object which is being shown as leaked.
 
 
+![Object_Database](https://github.com/rohanzende/Memory_Leak_Detector/assets/113251484/c0b4d654-3270-4ea7-b36f-232f3f840c9f)
 
 
 printing STRUCURE DATABASE
