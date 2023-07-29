@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "mld.h"
-#include "css.h"
 #include <assert.h>
 #include <memory.h>
 
@@ -16,16 +15,16 @@ print_structure_rec(struct_db_rec_t *struct_rec){
     if(!struct_rec) return;
     int j = 0;
     field_info_t *field = NULL;
-    printf(ANSI_COLOR_CYAN "|------------------------------------------------------|\n" ANSI_COLOR_RESET);
-    printf(ANSI_COLOR_YELLOW "| %-20s | size = %-8d | #flds = %-3d |\n" ANSI_COLOR_RESET, struct_rec->struct_name, struct_rec->ds_size, struct_rec->n_fields);
-    printf(ANSI_COLOR_CYAN "|------------------------------------------------------|------------------------------------------------------------------------------------------|\n" ANSI_COLOR_RESET);
+    printf("|------------------------------------------------------|\n" );
+    printf( "| %-20s | size = %-8d | #flds = %-3d |\n"  ,struct_rec->struct_name, struct_rec->ds_size, struct_rec->n_fields);
+    printf( "|------------------------------------------------------|------------------------------------------------------------------------------------------|\n" );
     for(j = 0; j < struct_rec->n_fields; j++){
         field = &struct_rec->fields[j];
         printf("  %-20s |", "");
         printf("%-3d %-20s | dtype = %-15s | size = %-5d | offset = %-6d|  nstructname = %-20s  |\n",
                 j, field->fname, DATA_TYPE[field->dtype], field->size, field->offset, field->nested_str_name);
         printf("  %-20s |", "");
-        printf(ANSI_COLOR_CYAN "--------------------------------------------------------------------------------------------------------------------------|\n" ANSI_COLOR_RESET);
+        printf("--------------------------------------------------------------------------------------------------------------------------|\n" );
     }
 }
 
@@ -191,10 +190,10 @@ void
 print_object_rec(object_db_rec_t *obj_rec, int i){
 
     if(!obj_rec) return;
-    printf(ANSI_COLOR_MAGENTA "-----------------------------------------------------------------------------------------------------|\n"ANSI_COLOR_RESET);
-    printf(ANSI_COLOR_YELLOW "%-3d ptr = %-10p | next = %-10p | units = %-4d | struct_name = %-10s | is_root = %s |\n"ANSI_COLOR_RESET,
-        i, obj_rec->ptr, obj_rec->next, obj_rec->units, obj_rec->struct_rec->struct_name, obj_rec->is_root ? "TRUE " : "FALSE");
-    printf(ANSI_COLOR_MAGENTA "-----------------------------------------------------------------------------------------------------|\n"ANSI_COLOR_RESET);
+    printf( "-----------------------------------------------------------------------------------------------------|\n");
+    printf( "%-3d ptr = %-10p | next = %-10p | units = %-4d | struct_name = %-10s | is_root = %s |\n"
+        ,i, obj_rec->ptr, obj_rec->next, obj_rec->units, obj_rec->struct_rec->struct_name, obj_rec->is_root ? "TRUE " : "FALSE");
+    printf( "-----------------------------------------------------------------------------------------------------|\n");
 }
 
 void
@@ -202,7 +201,7 @@ print_object_db(object_db_t *object_db){
 
     object_db_rec_t *head = object_db->head;
     unsigned int i = 0;
-    printf(ANSI_COLOR_CYAN "Printing OBJECT DATABASE\n");
+    printf( "Printing OBJECT DATABASE\n");
     for(; head; head = head->next){
         print_object_rec(head, i++);
     }
@@ -441,4 +440,5 @@ mld_init_primitive_data_types_support(struct_db_t *struct_db){
     REG_STRUCT(struct_db, float , 0);
     REG_STRUCT(struct_db, double , 0);
 }
+
 
