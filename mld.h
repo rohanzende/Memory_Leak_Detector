@@ -81,10 +81,10 @@ int /*return 0 on success, -1 on failure for some reason*/
 add_structure_to_struct_db(struct_db_t *struct_db, struct_db_rec_t *struct_rec);
 
 /*Structure Registration helping APIs*/
-
 #define FIELD_INFO(struct_name, fld_name, dtype, nested_struct_name)    \
    {#fld_name, dtype, FIELD_SIZE(struct_name, fld_name),                \
         OFFSETOF(struct_name, fld_name), #nested_struct_name}
+
 
 #define REG_STRUCT(struct_db, st_name, fields_arr)                    \
     do{                                                               \
@@ -163,5 +163,7 @@ mld_set_dynamic_object_as_root(object_db_t *object_db, void *obj_ptr);
 
 void
 mld_init_primitive_data_types_support(struct_db_t *struct_db);
+
+
 
 #endif /* __MLD__ */
