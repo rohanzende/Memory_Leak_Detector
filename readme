@@ -1,3 +1,12 @@
+gcc -g -c mld.c -o mld.o
+gcc -g -c app.c -o app.o
+gcc -g -o exe app.o mld.o
+
+Run the program as :
+./exe
+
+
+
 ![Object_Database](https://github.com/rohanzende/Memory_Leak_Detector/assets/113251484/8c42f6b3-9225-4e67-8a25-466df7c28c11)
 
 The program will print the leaked objects as below.
